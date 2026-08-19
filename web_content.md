@@ -15,5 +15,5 @@ LLM-based multi-agent debate system for the supervision of psychotherapy session
 - https://github.com/jakubjura/transcriber_by_codex
 - https://github.com/jakubjura/AI-supervision
   
- ![Tux, the Linux mascot](/assets/images/tux.png)
+ ![UC diagram of SYNDI](/assets/images/UC_specped_short.png)
 
