@@ -11,5 +11,8 @@ LLM-based multi-agent debate system for the supervision of psychotherapy session
 - Ing. Cyril Oswald, Ph.D., FS ČVUT
 - Mgr. Radka Brabcová, PPP
 - Mgr. Marie Chvojková, Kpsy PedF UK
-##
+## Repositories
+- https://github.com/jakubjura/transcriber_by_codex
+- https://github.com/jakubjura/AI-supervision
+ ![Tux, the Linux mascot](/assets/images/tux.png)
 
