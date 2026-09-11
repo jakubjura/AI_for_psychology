@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#07152b">
+    <meta
+      name="description"
+      content="AI for psychology: research projects connecting artificial intelligence, psychological diagnostics, special education, and psychotherapy supervision."
+    >
+    <title>AI for Psychology</title>
+    <style>
+      :root {
+        --navy-950: #050d1d;
+        --navy-900: #07152b;
+        --navy-800: #0b2342;
+        --navy-700: #143b62;
+        --cyan-400: #33d7ee;
+        --cyan-300: #7ce8f5;
+        --violet-400: #a27cff;
+        --amber-400: #e8ad48;
+        --paper: #fbfcff;
+        --mist: #ecf4f8;
+        --ink: #0a1730;
+        --muted: #52647b;
+        --line: rgba(7, 21, 43, 0.14);
+        --shadow: 0 28px 80px rgba(3, 12, 27, 0.3);
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 20%, rgba(51, 215, 238, 0.18), transparent 30rem),
+          radial-gradient(circle at 92% 55%, rgba(162, 124, 255, 0.2), transparent 35rem),
+          linear-gradient(145deg, #07162d 0%, #0b2c4b 44%, #173f5d 100%);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.58;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 20;
+        top: 0.75rem;
+        left: 0.75rem;
+        transform: translateY(-180%);
+        padding: 0.7rem 1rem;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--navy-950);
+        font-weight: 800;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-header {
+        position: relative;
+        min-height: 86vh;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+        color: #fff;
+        background: var(--navy-950);
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.8;
+      }
+
+      .site-header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(4, 12, 29, 0.98) 0%, rgba(4, 12, 29, 0.83) 46%, rgba(4, 12, 29, 0.2) 100%),
+          linear-gradient(180deg, rgba(4, 12, 29, 0.1) 45%, rgba(4, 12, 29, 0.94) 100%);
+      }
+
+      .nav {
+        position: absolute;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.2rem clamp(1rem, 4vw, 4rem);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 1rem;
+        font-weight: 850;
+        letter-spacing: -0.02em;
+      }
+
+      .brand-mark {
+        width: 2.3rem;
+        height: 2.3rem;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(124, 232, 245, 0.55);
+        border-radius: 50%;
+        background: rgba(51, 215, 238, 0.12);
+        color: var(--cyan-300);
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        backdrop-filter: blur(14px);
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
+
+      .nav-links a,
+      .button-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.65rem;
+        padding: 0.72rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.09);
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 750;
+        backdrop-filter: blur(14px);
+        transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .button-link:hover {
+        transform: translateY(-2px);
+        border-color: rgba(124, 232, 245, 0.75);
+        background: rgba(51, 215, 238, 0.15);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 10rem 0 6.4rem;
+      }
+
+      .eyebrow,
+      .kicker {
+        margin: 0 0 0.9rem;
+        color: var(--cyan-300);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 800px;
+        margin: 0;
+        font-size: clamp(3.7rem, 9vw, 7rem);
+        line-height: 0.88;
+        letter-spacing: -0.075em;
+      }
+
+      .hero-lead {
+        max-width: 690px;
+        margin: 1.7rem 0 0;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: clamp(1.1rem, 2vw, 1.35rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+
+      .button-link.primary {
+        border-color: var(--cyan-300);
+        background: var(--cyan-300);
+        color: var(--navy-950);
+      }
+
+      main {
+        position: relative;
+        z-index: 4;
+        width: min(1120px, calc(100% - 2rem));
+        margin: -2.7rem auto 0;
+      }
+
+      section {
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        scroll-margin-top: 1rem;
+      }
+
+      .intro-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: 1.2rem;
+        align-items: stretch;
+        padding: clamp(1rem, 2vw, 1.4rem);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: var(--radius);
+        background: rgba(251, 252, 255, 0.95);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
+      }
+
+      .intro-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(1.2rem, 3vw, 2.4rem);
+      }
+
+      .intro-text .kicker,
+      .light-section .kicker {
+        color: #11778a;
+      }
+
+      h2 {
+        margin: 0 0 1rem;
+        color: var(--navy-950);
+        font-size: clamp(2.15rem, 5vw, 3.65rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+      }
+
+      h3 {
+        margin: 0;
+        color: var(--navy-950);
+        font-size: clamp(1.2rem, 2vw, 1.52rem);
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .intro-text p:last-child {
+        max-width: 650px;
+        color: #3f526a;
+        font-size: 1.05rem;
+      }
+
+      .intro-visual {
+        position: relative;
+        min-height: 25rem;
+        overflow: hidden;
+        border-radius: 7px;
+        background: var(--navy-900);
+      }
+
+      .intro-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 73% center;
+      }
+
+      .intro-visual::after {
+        content: "research · practice · responsibility";
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
+        padding: 0.55rem 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 999px;
+        background: rgba(4, 12, 29, 0.7);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 1.7rem;
+      }
+
+      .section-head > p {
+        max-width: 34rem;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .dark-section h2,
+      .dark-section .section-head h2 {
+        color: #fff;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.15rem;
+      }
+
+      .project-card {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: var(--radius);
+        background: var(--paper);
+        box-shadow: 0 18px 45px rgba(3, 12, 27, 0.22);
+      }
+
+      .project-media {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: var(--mist);
+      }
+
+      .project-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 500ms ease;
+      }
+
+      .project-card:hover .project-media img {
+        transform: scale(1.025);
+      }
+
+      .project-number {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        min-width: 2.6rem;
+        min-height: 2.6rem;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 50%;
+        background: rgba(4, 12, 29, 0.74);
+        color: #fff;
+        font-weight: 800;
+        backdrop-filter: blur(10px);
+      }
+
+      .project-copy {
+        min-height: 25rem;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(1.3rem, 2.5vw, 1.8rem);
+      }
+
+      .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-bottom: 1rem;
+      }
+
+      .project-meta span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 1.9rem;
+        padding: 0.3rem 0.64rem;
+        border-radius: 999px;
+        background: #e4f7fa;
+        color: #0b6170;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .project-copy > p {
+        margin-top: 1rem;
+        color: #42556c;
+      }
+
+      .card-link {
+        width: fit-content;
+        margin-top: auto;
+        padding-top: 1.4rem;
+        color: #0b6f81;
+        font-size: 0.9rem;
+        font-weight: 850;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.22em;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.15rem;
+      }
+
+      .principle {
+        padding: 1.25rem;
+        border: 1px solid rgba(124, 232, 245, 0.24);
+        border-radius: var(--radius);
+        background: rgba(5, 13, 29, 0.34);
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .principle strong {
+        display: block;
+        margin-bottom: 0.4rem;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      .principle span {
+        color: var(--cyan-300);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+      }
+
+      .architecture-band {
+        display: grid;
+        grid-template-columns: minmax(300px, 1.1fr) minmax(0, 0.9fr);
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .diagram-button {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: var(--radius);
+        background: #fff;
+        box-shadow: var(--shadow);
+        cursor: zoom-in;
+      }
+
+      .diagram-button img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: contain;
+      }
+
+      .zoom-label {
+        position: absolute;
+        right: 0.9rem;
+        bottom: 0.9rem;
+        padding: 0.5rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(7, 21, 43, 0.88);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 800;
+      }
+
+      .architecture-copy {
+        padding: clamp(1rem, 3vw, 2rem);
+        border-left: 3px solid var(--cyan-400);
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .architecture-copy h2 {
+        color: #fff;
+      }
+
+      .architecture-copy p + p {
+        margin-top: 1rem;
+      }
+
+      .light-section {
+        margin-inline: calc(50% - 50vw);
+        padding-inline: max(1rem, calc((100vw - 1120px) / 2));
+        background: var(--mist);
+      }
+
+      .light-section .section-head > p {
+        color: var(--muted);
+      }
+
+      .people-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .person-card {
+        min-height: 11rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1.25rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+        box-shadow: 0 12px 35px rgba(7, 21, 43, 0.08);
+      }
+
+      .person-card p {
+        margin-top: 0.7rem;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .person-index {
+        align-self: flex-end;
+        color: #16879a;
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+      }
+
+      .repository-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .repo-card {
+        position: relative;
+        min-height: 11rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1.4rem;
+        overflow: hidden;
+        border: 1px solid rgba(124, 232, 245, 0.25);
+        border-radius: var(--radius);
+        background: rgba(5, 13, 29, 0.45);
+        color: #fff;
+        text-decoration: none;
+        transition: transform 180ms ease, background 180ms ease;
+      }
+
+      .repo-card::before {
+        content: "</>";
+        position: absolute;
+        right: 1rem;
+        bottom: -0.8rem;
+        color: rgba(124, 232, 245, 0.1);
+        font-size: 6rem;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .repo-card:hover {
+        transform: translateY(-3px);
+        background: rgba(8, 30, 54, 0.75);
+      }
+
+      .repo-card span {
+        position: relative;
+        color: var(--cyan-300);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .repo-card strong {
+        position: relative;
+        max-width: 85%;
+        font-size: 1.15rem;
+        overflow-wrap: anywhere;
+      }
+
+      footer {
+        width: min(1120px, calc(100% - 2rem));
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin: 0 auto;
+        padding: 2.5rem 0 3rem;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.9rem;
+      }
+
+      footer a {
+        color: #fff;
+        font-weight: 800;
+        text-underline-offset: 0.18em;
+      }
+
+      dialog {
+        width: min(1180px, calc(100% - 2rem));
+        max-width: none;
+        max-height: calc(100vh - 2rem);
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: var(--radius);
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      dialog::backdrop {
+        background: rgba(2, 7, 17, 0.86);
+        backdrop-filter: blur(7px);
+      }
+
+      dialog img {
+        width: 100%;
+        max-height: calc(100vh - 2rem);
+        object-fit: contain;
+      }
+
+      .dialog-close {
+        position: absolute;
+        top: 0.7rem;
+        right: 0.7rem;
+        min-width: 2.6rem;
+        min-height: 2.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        background: rgba(7, 21, 43, 0.9);
+        color: #fff;
+        font: inherit;
+        font-size: 1.15rem;
+        cursor: pointer;
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--amber-400);
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 850px) {
+        .site-header {
+          min-height: 760px;
+        }
+
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        .hero-content {
+          padding-top: 13rem;
+        }
+
+        .intro-panel,
+        .projects-grid,
+        .architecture-band,
+        .repository-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-copy {
+          min-height: 0;
+        }
+
+        .card-link {
+          margin-top: 1rem;
+        }
+
+        .people-grid,
+        .principles {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .section-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 560px) {
+        main,
+        footer,
+        .hero-content {
+          width: min(100% - 1rem, 1120px);
+        }
+
+        .nav {
+          padding-inline: 0.5rem;
+        }
+
+        .nav-links a {
+          min-height: 2.35rem;
+          padding-inline: 0.72rem;
+          font-size: 0.82rem;
+        }
+
+        h1 {
+          font-size: 3.5rem;
+        }
+
+        .intro-visual {
+          min-height: 19rem;
+        }
+
+        .people-grid,
+        .principles {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <img
+        class="hero-image"
+        src="assets/Snímek obrazovky z 2026-09-11 08-26-36.png"
+        alt=""
+      >
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="AI for Psychology home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>AI for Psychology</span>
+        </a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#approach">Approach</a>
+          <a href="#people">People</a>
+          <a href="#repositories">Repositories</a>
+        </div>
+      </nav>
+
+      <div id="top" class="hero-content">
+        <p class="eyebrow">Interdisciplinary research · psychology × artificial intelligence</p>
+        <h1>AI for<br>psychology</h1>
+        <p class="hero-lead">
+          Research at the intersection of psychological practice, special education,
+          psychotherapy, and responsible artificial intelligence.
+        </p>
+        <div class="hero-actions">
+          <a class="button-link primary" href="#projects">Explore projects</a>
+          <a class="button-link" href="#people">Meet the team</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="intro-panel" aria-labelledby="about-title">
+        <div class="intro-text">
+          <p class="kicker">Research focus</p>
+          <h2 id="about-title">AI as a thoughtful second perspective</h2>
+          <p>
+            We develop tools that help professionals see complex material more clearly—from
+            educational-psychological assessment to psychotherapy supervision. Our systems bring
+            structured analysis and multiple perspectives into the workflow while keeping expert
+            judgment at the center.
+          </p>
+        </div>
+        <div class="intro-visual">
+          <img
+            src="assets/Snímek obrazovky z 2026-09-11 08-26-47.png"
+            alt="Diagram illustrating an LLM-based supervision pipeline."
+          >
+        </div>
+      </section>
+
+      <section id="projects" class="dark-section" aria-labelledby="projects-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Current work</p>
+            <h2 id="projects-title">Projects</h2>
+          </div>
+          <p>
+            Two complementary research directions connect interpretable AI workflows with the
+            day-to-day needs of psychologists, educators, and psychotherapists.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="assets/Snímek obrazovky z 2026-09-11 08-30-17.png"
+                alt="SYNDI project concept combining expert intuition and AI efficiency."
+              >
+              <span class="project-number" aria-hidden="true">01</span>
+            </div>
+            <div class="project-copy">
+              <div class="project-meta">
+                <span>Diagnostics</span>
+                <span>Special education</span>
+                <span>Hybrid AI</span>
+              </div>
+              <h3>SYNDI — LLM Synthesis for Special Education Diagnostic Reports</h3>
+              <p>
+                AI-assisted diagnostic framework for special education designed to provide an
+                objective “second opinion” based on standardized methodologies. By integrating
+                clinical data and PorTeX test results, the hybrid system (ANN/rules + LLM)
+                synthesizes diagnostic conclusions and practical recommendations for schools and
+                parents. Its primary goal is to reduce administrative workload and increase the
+                objectivity and standardization of the diagnostic process.
+              </p>
+              <a class="card-link" href="#approach">View system overview ↓</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="assets/Snímek obrazovky z 2026-09-11 08-27-36.png"
+                alt="Multi-agent architecture for AI-supported psychotherapy supervision."
+              >
+              <span class="project-number" aria-hidden="true">02</span>
+            </div>
+            <div class="project-copy">
+              <div class="project-meta">
+                <span>Psychotherapy</span>
+                <span>Multi-agent debate</span>
+                <span>LLM</span>
+              </div>
+              <h3>MAD AI Supervision</h3>
+              <p>
+                LLM-based multi-agent debate system for the supervision of psychotherapy sessions.
+                It combines transcript correction, speaker diarization, and prosodic, thematic,
+                and linguistic analysis with multiple independent supervisory perspectives,
+                including systemic, psychodynamic, cognitive-behavioral, humanistic/gestalt, and
+                Ericksonian approaches. A final Multi-Agent Debate integrates these perspectives
+                to provide a broader, multi-theoretical view of the therapeutic process.
+              </p>
+              <a class="card-link" href="#repositories">Explore related code ↓</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="principles" aria-label="Project principles">
+          <div class="principle">
+            <span>01</span>
+            <strong>Expert-led</strong>
+            AI output remains subject to professional review and approval.
+          </div>
+          <div class="principle">
+            <span>02</span>
+            <strong>Multi-perspective</strong>
+            Independent analyses expose agreements, tensions, and overlooked details.
+          </div>
+          <div class="principle">
+            <span>03</span>
+            <strong>Practice-oriented</strong>
+            Research outputs support concrete decisions, reports, and recommendations.
+          </div>
+        </div>
+      </section>
+
+      <section id="approach" class="architecture-band" aria-labelledby="approach-title">
+        <button class="diagram-button" type="button" aria-label="Open the SYNDI use-case diagram in a larger view">
+          <img
+            src="assets/UC_specped_short.png"
+            alt="Use-case diagram of the SYNDI AI assistant for educational-psychological assessment."
+          >
+          <span class="zoom-label">Open diagram ↗</span>
+        </button>
+        <div class="architecture-copy">
+          <p class="kicker">Human-in-the-loop</p>
+          <h2 id="approach-title">Designed around professional judgment</h2>
+          <p>
+            The diagnostic workflow connects assessment data, AI-supported synthesis, report
+            preparation, and practical outputs for families and schools.
+          </p>
+          <p>
+            The central safeguard is simple: the professional reviews and approves every
+            AI-generated output. The technology supports routine synthesis; it does not replace
+            clinical responsibility.
+          </p>
+        </div>
+      </section>
+
+      <section id="people" class="light-section" aria-labelledby="people-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Interdisciplinary team</p>
+            <h2 id="people-title">People</h2>
+          </div>
+          <p>
+            A collaboration between psychology, special education, counseling practice, and
+            engineering.
+          </p>
+        </div>
+
+        <div class="people-grid">
+          <article class="person-card">
+            <div>
+              <h3>Anna Kucharská</h3>
+              <p>Doc. Mgr., Ph.D. · Kpsy PedF UK</p>
+            </div>
+            <span class="person-index">01</span>
+          </article>
+          <article class="person-card">
+            <div>
+              <h3>Jakub Jura</h3>
+              <p>Ing. Mgr., Ph.D. · FS ČVUT</p>
+            </div>
+            <span class="person-index">02</span>
+          </article>
+          <article class="person-card">
+            <div>
+              <h3>Klára Špačková</h3>
+              <p>Mgr., Ph.D. · Kpsy PedF UK</p>
+            </div>
+            <span class="person-index">03</span>
+          </article>
+          <article class="person-card">
+            <div>
+              <h3>Cyril Oswald</h3>
+              <p>Ing., Ph.D. · FS ČVUT</p>
+            </div>
+            <span class="person-index">04</span>
+          </article>
+          <article class="person-card">
+            <div>
+              <h3>Radka Brabcová</h3>
+              <p>Mgr. · PPP</p>
+            </div>
+            <span class="person-index">05</span>
+          </article>
+          <article class="person-card">
+            <div>
+              <h3>Marie Chvojková</h3>
+              <p>Mgr. · Kpsy PedF UK</p>
+            </div>
+            <span class="person-index">06</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="repositories" class="dark-section" aria-labelledby="repositories-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Open development</p>
+            <h2 id="repositories-title">Repositories</h2>
+          </div>
+          <p>Source code and technical work supporting transcription and AI supervision.</p>
+        </div>
+        <div class="repository-grid">
+          <a
+            class="repo-card"
+            href="https://github.com/jakubjura/transcriber_by_codex"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>GitHub repository ↗</span>
+            <strong>transcriber_by_codex</strong>
+          </a>
+          <a
+            class="repo-card"
+            href="https://github.com/jakubjura/AI-supervision"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>GitHub repository ↗</span>
+            <strong>AI-supervision</strong>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>AI for Psychology · Research across psychology and engineering</p>
+      <p><a href="#top">Back to top ↑</a></p>
+    </footer>
+
+    <dialog id="diagram-dialog" aria-label="SYNDI use-case diagram">
+      <button class="dialog-close" type="button" aria-label="Close diagram">×</button>
+      <img
+        src="assets/UC_specped_long.png"
+        alt="Detailed use-case diagram of the SYNDI AI assistant for educational-psychological assessment."
+      >
+    </dialog>
+
+    <script>
+      const dialog = document.querySelector("#diagram-dialog");
+      const openButton = document.querySelector(".diagram-button");
+      const closeButton = document.querySelector(".dialog-close");
+
+      openButton.addEventListener("click", () => dialog.showModal());
+      closeButton.addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    </script>
+  </body>
+</html>
